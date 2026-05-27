@@ -1,4 +1,6 @@
+import SearchForm from "@/components/SearchForm"
 import React from "react"
+import Filters from "@/components/Filters"
 
 const page = () => {
   return (
@@ -9,6 +11,8 @@ const page = () => {
             JavaScript Mastery Resources
           </h1>
         </div>
+        <SearchForm />
+        <Filters />
       </section>
     </main>
   )
