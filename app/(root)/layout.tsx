@@ -1,17 +1,17 @@
-import Navbar from '@/components/Navbar'
-import React from 'react'
+import Navbar from "@/components/Navbar"
+import React from "react"
 // import "../globals.css"
-import Footer from '../../components/Footer';
+import Footer from "../../components/Footer"
 
-const layout = ({children}:{children:React.ReactNode}) => {
+const layout = ({ children }: { children: React.ReactNode }) => {
   return (
-      <>
+    <>
       {/* navbar */}
       <Navbar />
-        {children}
-        {/* footer */}
-        <Footer />
-      </>
+      {children}
+      {/* footer */}
+      <Footer />
+    </>
   )
 }
 

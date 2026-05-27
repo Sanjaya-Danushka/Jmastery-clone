@@ -7,7 +7,6 @@ const schema = {
       name: "title",
       title: "Title",
       type: "string",
-      require,
       validation: (Rule: any) => Rule.required(),
     },
     {
@@ -51,3 +50,5 @@ const schema = {
     },
   ],
 }
+
+export default schema;
