@@ -18,9 +18,8 @@ const page = async (props: props) => {
 
   const resourcesPlaylist = await getResourcesPlaylist()
 
-  // console.log(resources)
-  return (
-    <main className="flex-center padding col mx-auto flex w-full max-w-screen-2xl">
+    return (
+    <main className="flex flex-col w-full max-w-screen-2xl mx-auto">
       <section className="nav-padding w-full">
         <div className="flex-center relative min-h-68.5 w-full flex-col rounded-xl bg-[url('/jsm_resources_banner.svg')] bg-cover bg-center text-center">
           <h1 className="sm:heading1 heading2 mb-6 text-center text-white">
@@ -29,7 +28,6 @@ const page = async (props: props) => {
         </div>
         <SearchForm />
         <Filters />
-        {/* filters */}
 
         {(searchParams?.query || searchParams?.category) && (
           <section className="flex-center mt-6 w-full flex-col sm:mt-20">
@@ -58,12 +56,24 @@ const page = async (props: props) => {
           </section>
         )}
       </section>
-      {resourcesPlaylist.map((item: any) => (
+
+      {resourcesPlaylist?.length > 0 && resourcesPlaylist.map((item: any) => (
         <section
           key={item._id}
           className="flex-center mt-6 w-full flex-col sm:mt-20"
         >
           <h1 className="heading3 text-white-800 self-start">{item.title}</h1>
+          <div className="mt-12 flex w-full flex-wrap justify-center gap-16 sm:justify-start">
+            {item.resources?.map((resource: any) => (
+              <ResourceCard
+                key={resource._id}
+                title={resource.title}
+                id={resource._id}
+                image={resource.image}
+                dowLoadNumber={resource.views}
+              />
+            ))}
+          </div>
         </section>
       ))}
     </main>

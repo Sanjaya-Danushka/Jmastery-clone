@@ -11,7 +11,7 @@ interface GetResourcesParams {
 export const getResourcesPlaylist = async () => {
   try {
     const resources = await readClient.fetch(
-      groq`*[_type == "ResourcesPlaylist"]{
+      groq`*[_type == "resourcesPlaylist"]{
         title,
         _id,
         resources[0...6]->{
