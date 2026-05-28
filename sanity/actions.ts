@@ -32,6 +32,28 @@ export const getResourcesPlaylist = async () => {
   }
 }
 
+export const getResourceById = async (id: string) => {
+  try {
+    const resource = await readClient.fetch(
+      groq`*[_type == "resources" && _id == $id][0]{
+        title,
+        _id,
+        downloadLink,
+        "image": poster.asset->url,
+        views,
+        slug,
+        category
+      }`,
+      { id }
+    )
+
+    return resource
+  } catch (error) {
+    console.error("Error fetching resource:", error)
+    throw error
+  }
+}
+
 export const getResources = async (params: GetResourcesParams) => {
   const { query, category, page } = params
   try {
