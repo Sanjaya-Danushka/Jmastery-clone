@@ -34,19 +34,24 @@ const Filters = () => {
   }
 
   return (
-    <ul className="text-white-800 boy-text mx-auto no-scrollbar flex max-w-full justify-center gap-2 overflow-x-auto py-12 sm:max-w-2xl">
-      {links.map((Link) => (
-        <button
-          key={Link}
-          className={`rounded-lg px-8 py-2.5 whitespace-nowrap capitalize ${active === Link ? "bg-blue-500 text-white" : ""}`}
-          onClick={() => {
-              handleFilter(Link) ;
-          }}
-        >
-          {Link}
-        </button>
-      ))}
-    </ul>
+    <div className="flex flex-wrap justify-center gap-2">
+      {links.map((link) => {
+        const isActive = active === link
+        return (
+          <button
+            key={link}
+            className={`rounded-full px-5 py-2 text-sm font-medium transition-all duration-200 ${
+              isActive
+                ? "bg-linear-to-r from-blue-600 to-purple-600 text-white shadow-lg shadow-purple-500/20"
+                : "border border-white/10 bg-white/4 text-gray-400 hover:border-white/20 hover:text-white"
+            }`}
+            onClick={() => handleFilter(link)}
+          >
+            {link}
+          </button>
+        )
+      })}
+    </div>
   )
 }
 

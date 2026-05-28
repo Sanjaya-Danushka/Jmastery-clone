@@ -32,6 +32,46 @@ export const getResourcesPlaylist = async () => {
   }
 }
 
+export const getLatestResources = async () => {
+  try {
+    const resources = await readClient.fetch(
+      groq`*[_type == "resources"] | order(_createdAt desc) [0...6]{
+        title,
+        _id,
+        downloadLink,
+        "image": poster.asset->url,
+        views,
+        slug,
+        category
+      }`
+    )
+    return resources
+  } catch (error) {
+    console.error("Error fetching latest resources:", error)
+    return []
+  }
+}
+
+export const getPopularResources = async () => {
+  try {
+    const resources = await readClient.fetch(
+      groq`*[_type == "resources"] | order(views desc) [0...6]{
+        title,
+        _id,
+        downloadLink,
+        "image": poster.asset->url,
+        views,
+        slug,
+        category
+      }`
+    )
+    return resources
+  } catch (error) {
+    console.error("Error fetching popular resources:", error)
+    return []
+  }
+}
+
 export const getResourceById = async (id: string) => {
   try {
     const resource = await readClient.fetch(

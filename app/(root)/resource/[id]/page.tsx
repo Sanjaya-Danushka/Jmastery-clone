@@ -50,7 +50,7 @@ const Page = async ({ params }: PageProps) => {
                   className="h-auto w-full rounded-2xl object-cover"
                 />
               ) : (
-                <div className="flex h-80 w-full items-center justify-center rounded-2xl bg-gradient-to-br from-blue-500/10 to-purple-500/10">
+                <div className="flex h-80 w-full items-center justify-center rounded-2xl bg-linear-to-br from-blue-500/10 to-purple-500/10">
                   <span className="text-6xl font-bold text-white/10">{resource.title?.[0]}</span>
                 </div>
               )}
@@ -77,14 +77,14 @@ const Page = async ({ params }: PageProps) => {
               {resource.title}
             </h1>
 
-            <div className="mt-8 h-px w-full bg-gradient-to-r from-white/10 to-transparent" />
+            <div className="mt-8 h-px w-full bg-linear-to-r from-white/10 to-transparent" />
 
             <div className="mt-8 space-y-4">
               <a
                 href={resource.downloadLink}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group relative inline-flex w-full items-center justify-center gap-3 overflow-hidden rounded-xl bg-gradient-to-r from-blue-600 to-purple-600 px-8 py-4 text-base font-semibold text-white transition-all duration-300 hover:from-blue-500 hover:to-purple-500 hover:shadow-lg hover:shadow-purple-500/25 active:scale-[0.98]"
+                className="group relative inline-flex w-full items-center justify-center gap-3 overflow-hidden rounded-xl bg-linear-to-r from-blue-600 to-purple-600 px-8 py-4 text-base font-semibold text-white transition-all duration-300 hover:from-blue-500 hover:to-purple-500 hover:shadow-lg hover:shadow-purple-500/25 active:scale-[0.98]"
               >
                 <span className="relative z-10 flex items-center gap-2">
                   <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -96,7 +96,7 @@ const Page = async ({ params }: PageProps) => {
               </a>
             </div>
 
-            <div className="mt-6 rounded-xl border border-white/5 bg-white/[0.02] p-5">
+            <div className="mt-6 rounded-xl border border-white/5 bg-white/2 p-5">
               <h3 className="mb-3 text-sm font-semibold uppercase tracking-wider text-gray-500">Resource Info</h3>
               <div className="space-y-3 text-sm">
                 <div className="flex items-center justify-between">

@@ -5,28 +5,40 @@ interface props {
 }
 
 const Header = ({ type, query, category }: props) => {
-  if (query && category) {
-    return (
-      <h1 className="heading3 text-white-800 self-start">
-        Search Results for "{query}" in {category}
-      </h1>
-    )
+  const getMessage = () => {
+    if (query && category) {
+      return (
+        <>
+          Results for "<span className="text-white">{query}</span>" in{" "}
+          <span className="capitalize text-white">{category}</span>
+        </>
+      )
+    }
+    if (query) {
+      return (
+        <>
+          Results for "<span className="text-white">{query}</span>"
+        </>
+      )
+    }
+    if (category) {
+      return (
+        <>
+          <span className="capitalize text-white">{category}</span> Resources
+        </>
+      )
+    }
+    return <>No Results</>
   }
-  if (query) {
-    return (
-      <h1 className="heading3 text-white-800 self-start">
-        Search Results for "{query}"
-      </h1>
-    )
-  }
-  if (category) {
-    return (
-      <h1 className="heading3 text-white-800 self-start">
-        <span className="capitalize">{category}</span> Resources
-      </h1>
-    )
-  }
-  return <h1 className="heading3 text-white-800 self-start">No Results</h1>
+
+  return (
+    <div className="flex items-center gap-3">
+      <div className="h-6 w-1 rounded-full bg-linear-to-b from-blue-500 to-purple-500" />
+      <h2 className="text-xl font-semibold text-gray-300 sm:text-2xl">
+        {getMessage()}
+      </h2>
+    </div>
+  )
 }
 
 export default Header
