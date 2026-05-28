@@ -2,6 +2,12 @@
 
 A modern resource discovery platform built with Next.js 16, Sanity CMS, and Tailwind CSS. Browse curated tutorials, cheatsheets, and tools for web development.
 
+<img width="1904" height="809" alt="Screenshot_20260528_124046" src="https://github.com/user-attachments/assets/83c05551-2798-4d10-bc7d-db4489946063" />
+<img width="1895" height="641" alt="Screenshot_20260528_124025" src="https://github.com/user-attachments/assets/01852eda-c7a9-4ec8-9455-da7221dd615a" />
+<img width="1900" height="916" alt="Screenshot_20260528_124014" src="https://github.com/user-attachments/assets/58232ff5-36cd-4487-a535-28032c64eb72" />
+<img width="1903" height="929" alt="Screenshot_20260528_124001" src="https://github.com/user-attachments/assets/bac9f932-ea30-4f6e-860f-0ba0f81e2206" />
+
+
 ## Tech Stack
 
 - **Framework:** Next.js 16 (App Router, Turbopack)
