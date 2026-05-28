@@ -14,13 +14,17 @@ const ResourceCard = ({ id, title, image, dowLoadNumber }: props) => {
       <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-blue-500/20 via-purple-500/10 to-transparent p-0.5 shadow-lg shadow-black/50 transition-all duration-500 hover:shadow-xl hover:shadow-blue-500/25">
         <div className="relative flex flex-col rounded-2xl bg-black-200 p-3 transition-all duration-500 group-hover:bg-black-200/80">
           <div className="relative mb-3 overflow-hidden rounded-xl">
-            <Image
-              src={image}
-              alt={title}
-              className="h-56 w-full rounded-xl object-cover transition-all duration-500 group-hover:scale-110"
-              width={384}
-              height={440}
-            />
+            {image ? (
+              <Image
+                src={image}
+                alt={title}
+                className="h-56 w-full rounded-xl object-cover transition-all duration-500 group-hover:scale-110"
+                width={384}
+                height={440}
+              />
+            ) : (
+              <div className="h-56 w-full rounded-xl bg-black-400" />
+            )}
             <div className="absolute inset-0 rounded-xl bg-gradient-to-t from-black-200/80 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
           </div>
 

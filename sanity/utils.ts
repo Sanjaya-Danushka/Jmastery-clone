@@ -24,20 +24,36 @@ export function buildQuery(params: BuildQueryParams) {
 }
 interface UrlQueryParams {
   params: string
-  key: string
-  value: string | null
+  key?: string
+  value?: string | null
+  keyToRemove?: string[]
 }
 
-export function formUrlQuery({ params, key, value }: UrlQueryParams) {
+export function formUrlQuery({
+  params,
+  key,
+  value,
+  keyToRemove,
+}: UrlQueryParams) {
   const currentUrl = qs.parse(params)
-  // console.log(currentUrl, key, value)
-  currentUrl[ key ] = value;
-  return qs.stringifyUrl({
-    url: window.location.href,
-    query: currentUrl,
-  },
-  {
-    // skipEmptyString: true,
-    skipNull: true,
-  })
+
+  if (keyToRemove) {
+    keyToRemove.forEach((keyToRemove) => {
+      delete currentUrl[keyToRemove]
+    })
+  } else if (key && value) {
+    currentUrl[key] = value
+  } else if (key && value === null) {
+    delete currentUrl[key]
+  }
+
+  return qs.stringifyUrl(
+    {
+      url: window.location.pathname,
+      query: currentUrl,
+    },
+    {
+      skipNull: true,
+    }
+  )
 }

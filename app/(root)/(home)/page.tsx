@@ -1,7 +1,7 @@
 import SearchForm from "@/components/SearchForm"
 import React from "react"
 import Filters from "@/components/Filters"
-import { getResources } from "../../../sanity/actions"
+import { getResources, getResourcesPlaylist } from "../../../sanity/actions"
 import ResourceCard from "@/components/ResourceCard"
 import Header from "@/components/Header"
 
@@ -16,6 +16,8 @@ const page = async (props: props) => {
     category: searchParams?.category || "",
   })
 
+  const resourcesPlaylist = await getResourcesPlaylist()
+
   // console.log(resources)
   return (
     <main className="flex-center padding col mx-auto flex w-full max-w-screen-2xl">
@@ -27,25 +29,43 @@ const page = async (props: props) => {
         </div>
         <SearchForm />
         <Filters />
-        <section className="flex-center mt-6 w-full flex-col sm:mt-20">
-          <Header />
-          <div className="mt-12 flex w-full flex-wrap justify-center gap-16 sm:justify-start">
-            {resources.length > 0 ? (
-              resources.map((resource: any) => (
-                <ResourceCard
-                  key={resource._id}
-                  title={resource.title}
-                  id={resource._id}
-                  image={resource.image}
-                  dowLoadNumber={resource.views}
-                />
-              ))
-            ) : (
-              <p className="body-regular text-white-400">No resources found</p>
-            )}
-          </div>
-        </section>
+        {/* filters */}
+
+        {(searchParams?.query || searchParams?.category) && (
+          <section className="flex-center mt-6 w-full flex-col sm:mt-20">
+            <Header
+              type="Resources"
+              query={searchParams?.query || ""}
+              category={searchParams?.category || ""}
+            />
+            <div className="mt-12 flex w-full flex-wrap justify-center gap-16 sm:justify-start">
+              {resources.length > 0 ? (
+                resources.map((resource: any) => (
+                  <ResourceCard
+                    key={resource._id}
+                    title={resource.title}
+                    id={resource._id}
+                    image={resource.image}
+                    dowLoadNumber={resource.views}
+                  />
+                ))
+              ) : (
+                <p className="body-regular text-white-400">
+                  No resources found
+                </p>
+              )}
+            </div>
+          </section>
+        )}
       </section>
+      {resourcesPlaylist.map((item: any) => (
+        <section
+          key={item._id}
+          className="flex-center mt-6 w-full flex-col sm:mt-20"
+        >
+          <h1 className="heading3 text-white-800 self-start">{item.title}</h1>
+        </section>
+      ))}
     </main>
   )
 }

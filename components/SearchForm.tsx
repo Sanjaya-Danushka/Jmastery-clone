@@ -2,14 +2,43 @@
 
 import { formUrlQuery } from "@/sanity/utils"
 import Image from "next/image"
-import { useRouter, useSearchParams } from "next/navigation"
-import React, { useState } from "react"
+import { useRouter, useSearchParams, usePathname } from "next/navigation"
+import React, { useEffect, useState } from "react"
 import { Input } from "./ui/input"
 
 const SearchForm = () => {
   const [search, setSearch] = useState("")
   const router = useRouter()
   const searchParams = useSearchParams()
+  const pathname = usePathname()
+
+  useEffect(() => {
+    const delayDebounceFn = setTimeout(() => {
+      let newUrl = ""
+
+      if (search) {
+        newUrl = formUrlQuery({
+          params: searchParams.toString(),
+          key: "query",
+          value: search,
+        })
+        router.push(newUrl, { scroll: false })
+      } else {
+        newUrl = formUrlQuery({
+          params: searchParams.toString(),
+          keyToRemove: ["query"],
+          value: null,
+        })
+        router.push(newUrl, { scroll: false })
+      }
+    }, 300)
+
+    return () => clearTimeout(delayDebounceFn)
+  }, [search])
+  
+
+
+
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
